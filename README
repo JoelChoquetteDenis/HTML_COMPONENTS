@@ -1,0 +1,65 @@
+# HTML Components
+
+## Why
+
+Using React or Angular can be a lot for projects that don't require complexity. That's why I came up with a quick solution.
+
+## How to use
+
+- `build.js` must be at the root of the project.
+- `dev/` must also be at the root of the project, it contains your website.
+- Components are `.html` files located in `dev/components/`.
+- To add a component to your page, add the tag `<component src="nameOfYourComponent"></component>`, it will import the file located in `dev/components/nameOfYourComponent.html`.
+- During dev, make sur to include `componentSupport.js`, it will take care of the rendering of your components
+- Once you are done developping, execute `node build.js`. It will create a folder called `build/UTC_DATETIME_OF_BUILD/` containing your website with the components rendered statically.
+
+### Quick example
+
+#### During dev
+
+It should look like this during dev, with `<script src="/dev/componentSupport.js" defer></script>` in the `head` or `body`.
+
+```html
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HTML Components</title>
+        <script src="/dev/componentSupport.js" defer></script>
+        <!-- ESSENTIAL DURING DEV -->
+    </head>
+    <body>
+        <component src="nameOfYourComponent"></component>
+        <!-- ADDING A COMPONENT TO THE PAGE -->
+    </body>
+</html>
+```
+
+#### After build
+
+It should look like this after building, `componentSupport.js` is now gone and your component has been directly baked in your page.
+
+```html
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HTML Components</title>
+    </head>
+    <body>
+        <!-- START OF COMPONENT -->
+        <div>
+            <h1>This is a component</h1>
+            <h2>Everything has to be wrapped in a single element! <em>Not sure what to use?</em> Use a div!</h2>
+        </div>
+        <!-- END OF COMPONENT -->
+    </body>
+</html>
+```
+
+## Notice
+
+ - This does not support recursivity, components **CANNOT** contain another component.
+ - Components must be a single elements, if you have multiple elements, wrap them in a `div` or any other element of your choice.
