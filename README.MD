@@ -4,6 +4,11 @@
 
 Using React or Angular can be a lot for projects that don't require complexity. That's why I came up with a quick solution.
 
+## Requirements
+
+Tested on : Node v22.17.0
+*Should* work on : Node v15 and more recent versions
+
 ## How to use
 
 - `build.js` must be at the root of the project.
